@@ -12,7 +12,7 @@ app.use(cors());
 app.options('*', cors());
 
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || 8080, () => {
     console.log('Your app is listening on port ' + listener.address().port )
 })
 
@@ -28,7 +28,7 @@ app.post('/SendMessage', function (req, res) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: false,
-        port: 587,
+        port: 465,
         auth: {
           user: process.env.MY_EMAIL,
           pass: process.env.PASS
