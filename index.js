@@ -15,8 +15,10 @@ app.options('*', cors());
 const listener = app.listen(process.env.PORT || 8081, () => {
     console.log('Your app is listening on port ' + listener.address().port )
 })
-console.log(process.env.MY_EMAIL);
 
+app.get('/', function (req, res) {
+    res.send({Message : 'Succefly'})
+})
 
 app.post('/SendMessage', function (req, res) {
     let Email = req.body.Email
