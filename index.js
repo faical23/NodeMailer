@@ -26,8 +26,8 @@ app.post('/SendMessage', function (req, res) {
   
   // async..await is not allowed in global scope, must use a wrapper
   async function main() {
-    // Generate test SMTP service account from ethereal.email
-    // Only needed if you don't have a real mail account for testing
+
+
     let testAccount = await nodemailer.createTestAccount();
   
     // create reusable transporter object using the default SMTP transport
@@ -36,8 +36,8 @@ app.post('/SendMessage', function (req, res) {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: "faicalbahsis666@gmail.com", // generated ethereal user
-        pass: "gU_&#!Gs645", // generated ethereal password
+        user: process.env.EMAIL, // generated ethereal user
+        pass: process.env.PASS, // generated ethereal password
       },
     });
   
@@ -46,7 +46,7 @@ app.post('/SendMessage', function (req, res) {
       from: '"Fred Foo 👻" <foo@example.com>', // sender address
       to: "faissalabr@gmail.com", // list of receivers
       subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
+      text: "hamdullah its work now", // plain text body
       html: "<b>Hello world?</b>", // html body
     });
 
