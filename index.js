@@ -27,6 +27,10 @@ app.post('/SendMessage', function (req, res) {
   // async..await is not allowed in global scope, must use a wrapper
   async function main() {
 
+    let Email = req.body.Email
+    let Name = req.body.Name
+    let Comment = req.body.Comment
+    let Message = `<h2>From : ${Email}</h2><h4>Name : ${Name}<h4><p>Message : ${Comment}<p>`
 
     let testAccount = await nodemailer.createTestAccount();
   
@@ -43,11 +47,10 @@ app.post('/SendMessage', function (req, res) {
   
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <foo@example.com>', // sender address
+      from: `From <${Email}>`, // sender address
       to: "faissalabr@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "htesting", // plain text body
-      html: "<testing", // html body
+      subject: "Email From ArdUnifert", // Subject line
+      html:Message, // html body
     });
 
       res.json('succefly email')
