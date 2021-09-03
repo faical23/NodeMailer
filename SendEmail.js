@@ -2,16 +2,18 @@ const express = require('express')
 const cors = require('cors')
 var nodemailer = require('nodemailer');
 
-//// test
+
+
 const app = express()
 
 app.use(express.json())
 app.use(cors());
 app.options('*', cors());
 
+const MostPrivate = require('./MotsPrivate')
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-    console.log('Your app is listening on port ' + listener.address().port)
+    console.log('Your app is listening on port ' + listener.address().port )
 })
 
 
@@ -23,8 +25,8 @@ app.post('/SendMessage', function (req, res) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'faicalbahsis666@gmail.com',
-          pass: 'abc123ABC@'
+          user: MostPrivate.Email,
+          pass: MostPrivate.pass
         }
       });
       
