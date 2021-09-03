@@ -17,38 +17,41 @@ const listener = app.listen(process.env.PORT || 8081, () => {
 })
 
 app.get('/', function (req, res) {
-    res.send({Message : 'Succefly'})
+    res.send({Message : 'Succefly Api'})
 })
 
 app.post('/SendMessage', function (req, res) {
-    let Email = req.body.Email
-    let Name = req.body.Name
-    let Comment = req.body.Comment
-    let Message = `<h2>From : ${Email}</h2><h4>Name : ${Name}<h4><p>Message : ${Comment}<p>`
-    var transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        service: 'gmail',
-        auth: {
-          user: process.env.MY_EMAIL,
-          pass: process.env.PASS
-        }
-      });
-      
-      var mailOptions = {
-        from:Email,
-        to: 'faissalabr@gmail.com',
-        subject: 'From ARD UNIFET',
-        html:Message
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-    res.json({Email,Name,Comment})
+  "use strict";
+  const nodemailer = require("nodemailer");
+  
+  // async..await is not allowed in global scope, must use a wrapper
+  async function main() {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    let testAccount = await nodemailer.createTestAccount();
+  
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "faicalbahsis666@gmail.com", // generated ethereal user
+        pass: "gU_&#!Gs645", // generated ethereal password
+      },
+    });
+  
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Fred Foo 👻" <foo@example.com>', // sender address
+      to: "faissalabr@gmail.com", // list of receivers
+      subject: "Hello ✔", // Subject line
+      text: "Hello world?", // plain text body
+      html: "<b>Hello world?</b>", // html body
+    });
+
+      res.json('succefly email')
+  }
+  
+  main().catch(console.error);
   });
