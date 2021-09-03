@@ -27,6 +27,7 @@ app.post('/SendMessage', function (req, res) {
     let Message = `<h2>From : ${Email}</h2><h4>Name : ${Name}<h4><p>Message : ${Comment}<p>`
     var transporter = nodemailer.createTransport({
         service: 'gmail',
+        host: 'smtp.gmail.com',
         secure: false,
         port: 465,
         auth: {
