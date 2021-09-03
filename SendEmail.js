@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 var nodemailer = require('nodemailer');
+require('dotenv').config()
 
 
 
@@ -10,11 +11,11 @@ app.use(express.json())
 app.use(cors());
 app.options('*', cors());
 
-const MostPrivate = require('./MotsPrivate')
 
 const listener = app.listen(process.env.PORT || 3000, () => {
     console.log('Your app is listening on port ' + listener.address().port )
 })
+console.log(process.env.MY_EMAIL);
 
 
 app.post('/SendMessage', function (req, res) {
@@ -25,8 +26,8 @@ app.post('/SendMessage', function (req, res) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: MostPrivate.Email,
-          pass: MostPrivate.pass
+          user: process.env.MY_EMAIL,
+          pass: process.env.PASS
         }
       });
       
