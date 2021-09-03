@@ -46,8 +46,8 @@ app.post('/SendMessage', function (req, res) {
       from: '"Fred Foo 👻" <foo@example.com>', // sender address
       to: "faissalabr@gmail.com", // list of receivers
       subject: "Hello ✔", // Subject line
-      text: "hamdullah its work now", // plain text body
-      html: "<b>Hello world?</b>", // html body
+      text: "htesting", // plain text body
+      html: "<testing", // html body
     });
 
       res.json('succefly email')
