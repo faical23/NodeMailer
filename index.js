@@ -26,7 +26,10 @@ app.post('/SendMessage', function (req, res) {
     let Comment = req.body.Comment
     let Message = `<h2>From : ${Email}</h2><h4>Name : ${Name}<h4><p>Message : ${Comment}<p>`
     var transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
         service: 'gmail',
+        secure: false,
+        port: 587,
         auth: {
           user: process.env.MY_EMAIL,
           pass: process.env.PASS
